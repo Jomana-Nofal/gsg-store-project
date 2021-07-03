@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\Admin\CategoriesController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,5 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('adminCategories.create');
+    return view('adminCategories.index');
 });
+
+Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('categories.index');
+Route::get('/admin/create/categories', [CategoriesController::class, 'create'])->name('categories.create');
+Route::post('/admin/save/categories', [CategoriesController::class, 'store'])->name('categories.store');
