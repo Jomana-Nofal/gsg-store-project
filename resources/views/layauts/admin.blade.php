@@ -57,18 +57,18 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href="profile.html"><img src="adminAssets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
+              	  <p class="centered"><a href=""><img src="adminAssets/img/ui-sam.jpg" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">Admin</h5>
               	  	
                   <li class="mt">
-                      <a href="">
+                      <a href="{{ route('categories.index') }}">
                           <i class="fa fa-dashboard"></i>
                           <span>Category Index</span>
                       </a>
                   </li>
 
                   <li class="sub-menu">
-                      <a href="javascript:;" >
+                      <a href="{{ route('categories.create') }}" >
                           <i class="fa fa-desktop"></i>
                           <span>Create Category</span>
                       </a>

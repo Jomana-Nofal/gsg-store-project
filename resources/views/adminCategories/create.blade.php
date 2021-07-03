@@ -7,7 +7,7 @@
 
 
 @section('content')
-<form action="" method="post">
+<form action="{{ route('categories.store') }}" method="post">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     {{ csrf_field() }}
@@ -15,12 +15,12 @@
 
     <div class="form-group">
         <label for="categoryName">Category Name</label>
-        <input type="text" class="form-control" id="categoryName" placeholder="Enter Category Name">
+        <input type="text" class="form-control" id="categoryName" placeholder="Enter Category Name" name="name">
     </div>
 
     <div class="form-group">
         <label for="categoryDesc">Category Description</label>
-        <textarea class="form-control" name="description" id="categoryDesc" placeholder="Enter Category Description"></textarea>
+        <textarea class="form-control" name="discription" id="categoryDesc" placeholder="Enter Category Description"></textarea>
     </div>
 
     <div class="form-group">
@@ -29,7 +29,7 @@
     </div>
 
     <div class="form-group">
-        <button type="button" class="btn btn-warning">Save Data</button>
+        <button type="submit" class="btn btn-warning">Save Data</button>
     </div>
 
 </form>

@@ -14,7 +14,7 @@ use App\Http\Controllers\Admin\CategoriesController;
 */
 
 Route::get('/', function () {
-    return view('adminCategories.index');
+    return view('adminCategories.create');
 });
 
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('categories.index');
