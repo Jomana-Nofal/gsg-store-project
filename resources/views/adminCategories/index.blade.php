@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
-                <td>{{ $category->descripton }}</td>
+                <td>{{ $category->discription }}</td>
                 <td>{{ $category->status }}</td>
                 <td>{{ $category->slug }}</td>
             </tr>

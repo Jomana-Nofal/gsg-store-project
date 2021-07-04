@@ -22,7 +22,7 @@ class CategoriesController extends Controller
 
     public function store(Request $request)
     {
-        
+       
         $category = new Category([
             'name' => $request['name'],
             'discription' => $request['discription'],
