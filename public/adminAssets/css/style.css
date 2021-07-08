@@ -11,12 +11,12 @@ Premium: http://www.gridgum.com
 
 /* BASIC THEME CONFIGURATION */
 body {
-    color: #797979;
+    
 	background: #f2f2f2;
     font-family: 'Ruda', sans-serif;
     padding: 0px !important;
     margin: 0px !important;
-    font-size:13px;
+    font-size:15px;
 }
 
 ul li {
@@ -2206,7 +2206,7 @@ label {
 }
 
 .ui-sortable li.list-info {
-    border-left: 3px solid #58C9F3;
+    border-left: 3px solid hsl(196, 49%, 35%);
 }
 
 .ui-sortable li.list-inverse {
@@ -2215,7 +2215,7 @@ label {
 
 /*footer*/
 .site-footer {
-    background: #68dff0;
+    background: #424a5d;
     color: #fff;
     padding: 10px 0;
 }

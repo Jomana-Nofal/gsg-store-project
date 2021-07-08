@@ -4,7 +4,13 @@
 
 @section('pageTitle', 'Create New Category')
 
-
+@section('status')
+@if (session('status'))
+    <div class="alert alert-success">
+        {{ session('status') }}
+    </div>
+@endif
+@endsection
 
 @section('content')
 <form action="{{ route('categories.store') }}" method="post">
@@ -27,7 +33,22 @@
         <label for="categoryImage">Category Image</label>
         <input type="file" class="form-control" name="image" id="categoryImage">
     </div>
-
+    <div class="form-group">
+        <label for="status">Status</label>
+        <div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="status-active" value="active">
+                <label class="form-check-label" for="status-active">
+                    Active
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft">
+                <label class="form-check-label" for="status-draft">
+                    Draft
+                </label>
+            </div>
+        </div>
     <div class="form-group">
         <button type="submit" class="btn btn-warning">Save Data</button>
     </div>

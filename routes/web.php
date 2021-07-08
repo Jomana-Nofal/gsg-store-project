@@ -20,3 +20,8 @@ Route::get('/', function () {
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('categories.index');
 Route::get('/admin/create/categories', [CategoriesController::class, 'create'])->name('categories.create');
 Route::post('/admin/save/categories', [CategoriesController::class, 'store'])->name('categories.store');
+Route::get('/admin/edit/categories/{id}', [CategoriesController::class, 'edit'])->name('categories.edit');
+Route::put('/admin/update/categories/{id}', [CategoriesController::class, 'update'])->name('categories.update');
+Route::delete('/admin/destroy/categories/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
+
+

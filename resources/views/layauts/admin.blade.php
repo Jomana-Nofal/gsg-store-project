@@ -37,7 +37,7 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="index.html" class="logo"><b>Admin Conrtoll Panel</b></a>
+            <a href="{{ route('categories.index') }}" class="logo"><b>Admin Conrtoll Panel</b></a>
             <!--logo end-->
            
             <div class="top-menu">
@@ -130,6 +130,11 @@
       <section id="main-content">
           <section class="wrapper site-min-height">
           	<h3><i class="fa fa-angle-right"></i>  @yield('pageTitle','title')</h3>
+              
+            <div class="status">
+            @yield('status')
+            </div>
+
           	<div class="row mt">
           		<div class="col-lg-12">
                   @yield('content')

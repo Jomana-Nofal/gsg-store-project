@@ -27,11 +27,37 @@ class CategoriesController extends Controller
             'name' => $request['name'],
             'discription' => $request['discription'],
             'slug' => Str::slug($request['name']),
-            'status' => 'active',
+            'status' => $request['status'],
+
         ]);
 
         $category->save();
-        return redirect()->back(); 
+        return redirect()->back()->with('status', ' Category Was Saved!');
+       }
+
+
+       public function edit($id)
+       {
+        $category = Category::find($id);
+        return view('adminCategories.edit',compact('category'));
+       }
+
+
+       public function update(Request $request , $id)
+       {
+
+           $category = Category::find($id);
+           $category->update( $request->all());
+
+           return redirect()->route('categories.index')->with('status', 'Category Has Been updated');
+           
+
+       }
+
+       public function destroy($id)
+       {
+        $category = Category::find($id)->delete();
+        return redirect()->route('categories.index')->with('status', 'Category Has Been Deleted');
        }
     
 }
