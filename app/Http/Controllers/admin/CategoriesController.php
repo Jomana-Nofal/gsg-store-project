@@ -17,12 +17,19 @@ class CategoriesController extends Controller
 
     public function create()
     {
-        return view('adminCategories.create');
+        $category = new Category();
+        return view('adminCategories.create',compact('category'));
     }
 
     public function store(Request $request)
     {
        
+        $validation = $request->validate([
+            'name' => 'required|string|max:255|min:3|unique:categories',
+            'discription' => 'nullable|min:10',
+            'status' => 'required|in:active,draft',
+        ]);
+        
         $category = new Category([
             'name' => $request['name'],
             'discription' => $request['discription'],
@@ -32,7 +39,7 @@ class CategoriesController extends Controller
         ]);
 
         $category->save();
-        return redirect()->back()->with('status', ' Category Was Saved!');
+        return redirect()->route('categories.index')->with('status', ' Category Was Saved!');
        }
 
 
