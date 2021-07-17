@@ -24,4 +24,7 @@ Route::get('/admin/edit/categories/{id}', [CategoriesController::class, 'edit'])
 Route::put('/admin/update/categories/{id}', [CategoriesController::class, 'update'])->name('categories.update');
 Route::delete('/admin/destroy/categories/{id}', [CategoriesController::class, 'destroy'])->name('categories.destroy');
 
+Route::get('/admin/categories/trash', [CategoriesController::class, 'trash'])
+    ->name('categories.trash');
+
 

@@ -14,6 +14,14 @@
 
 @section('content')
 
+<div class="">
+       
+        <a class="btn btn-sm  btn-danger" href="{{ route('categories.trash') }}">
+            <span class="glyphicon glyphicon-trash" aria-hidden="true" style="color:white;"></span>
+         Trashed Category</a>
+</div>
+</br>
+
 <table class="table table-bordered">
   <thead>
     <tr>

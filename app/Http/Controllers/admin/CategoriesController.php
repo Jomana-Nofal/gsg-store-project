@@ -67,5 +67,14 @@ class CategoriesController extends Controller
         $category = Category::find($id)->delete();
         return redirect()->route('categories.index')->with('status', 'Category Has Been Deleted');
        }
+
+       public function trash()
+       {
+        $category = Category::withoutGlobalScope('active')->onlyTrashed()->paginate();
+        return view('adminCategories.trash', [
+            'categories' => $category,
+        ]);
+        
+       }
     
 }
