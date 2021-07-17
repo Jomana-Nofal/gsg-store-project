@@ -25,31 +25,32 @@
 
     <div class="form-group">
         <label for="categoryName">Category Name</label>
-        <input type="text" class="form-control" id="categoryName" placeholder="Enter Category Name" name="name" value="{{ old('name', $category->name) }}">
+        <input type="text" class="form-control @error('name') is-invalid @enderror" id="categoryName" placeholder="Enter Category Name" name="name" value="{{ old('name')}}">
+        
     </div>
 
     <div class="form-group">
         <label for="categoryDesc">Category Description</label>
         <textarea class="form-control" name="discription" id="categoryDesc" placeholder="Enter Category Description">
-        {{ old('discription', $category->discription) }}
+        {{ old('discription') }}
         </textarea>
     </div>
 
     <div class="form-group">
         <label for="categoryImage">Category Image</label>
-        <input type="file" class="form-control" name="image" id="categoryImage" value="{{ old('image', $category->image) }}">
+        <input type="file" class="form-control" name="image" id="categoryImage" value="{{ old('image') }}">
     </div>
     <div class="form-group">
         <label for="status">Status</label>
         <div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status', $category->status) == 'active') checked @endif>
+                <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status') == 'active') checked @endif>
                 <label class="form-check-label" for="status-active">
                     Active
                 </label>
             </div>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status', $category->status) == 'draft') checked @endif>
+                <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status') == 'draft') checked @endif>
                 <label class="form-check-label" for="status-draft">
                     Draft
                 </label>

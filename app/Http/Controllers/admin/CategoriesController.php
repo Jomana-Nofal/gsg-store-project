@@ -11,14 +11,14 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::paginate(10);
         return view('adminCategories.index', compact('categories'));
     }
 
     public function create()
     {
         $category = new Category();
-        return view('adminCategories.create',compact('category'));
+        return view('adminCategories.create', compact('category'));
     }
 
     public function store(Request $request)
@@ -28,6 +28,7 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255|min:3|unique:categories',
             'discription' => 'nullable|min:10',
             'status' => 'required|in:active,draft',
+            'image' => 'required'
         ]);
         
         $category = new Category([
