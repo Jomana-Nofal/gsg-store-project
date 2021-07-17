@@ -13,8 +13,8 @@
       <th>Discription</th>
       <th>Satatus</th>
       <th>Slug</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>Remove</th>
+      <th>Restore</th>
     </tr>
   </thead>
   <tbody>
