@@ -40,7 +40,7 @@ class CategoriesController extends Controller
         ]);
 
         $category->save();
-        return redirect()->route('categories.index')->with('status', ' Category Was Saved!');
+        return redirect()->route('categories.index')->with('status', 'New  Category Was Saved!');
        }
 
 
@@ -57,7 +57,7 @@ class CategoriesController extends Controller
            $category = Category::find($id);
            $category->update( $request->all());
 
-           return redirect()->route('categories.index')->with('status', 'Category Has Been updated');
+           return redirect()->route('categories.index')->with('status', 'Category ($category->name) Has Been updated');
            
 
        }
@@ -65,16 +65,40 @@ class CategoriesController extends Controller
        public function destroy($id)
        {
         $category = Category::find($id)->delete();
-        return redirect()->route('categories.index')->with('status', 'Category Has Been Deleted');
+        return redirect()->route('categories.index')->with('status', 'Category ($category->name) Has Been Deleted');
        }
 
        public function trash()
        {
-        $category = Category::withoutGlobalScope('active')->onlyTrashed()->paginate();
+        $category = Category::onlyTrashed()->paginate();
         return view('adminCategories.trash', [
             'categories' => $category,
         ]);
         
        }
+
+  
+      public function forceDelete($id)
+       {
+           $category= Category::onlyTrashed()->findOrFail($id);
+           $category->forceDelete();
+           return redirect()->route('categories.index')->with('status', "Category ($category->name) deleted forever.");
+                
+
+       }
+
+       public function restore(Request $request, ?Category $category = null)
+       {
+           if($category){
+                $category->restore();
+
+                return redirect()->route('categories.index')->with('status', "Category ($category->name) restored.");
+                    
+            }
+        
+                
+
+       }
+       
     
 }
