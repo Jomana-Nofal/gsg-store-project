@@ -17,7 +17,7 @@
 @endsection
 
 @section('content')
-<form action="{{ route('categories.store') }}" method="post">
+<form action="{{ route('categories.store') }}" method="post" enctype="multipart/form-data">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     {{ csrf_field() }}
@@ -37,9 +37,13 @@
     </div>
 
     <div class="form-group">
-        <label for="categoryImage">Category Image</label>
-        <input type="file" class="form-control" name="image" id="categoryImage" value="{{ old('image') }}">
+        <label for="">Category Image</label>
+        <input type="file" class="form-control" name="image">
+        @error('image')
+        <p class="invalid-feedback">{{ $message }}</p>
+        @enderror
     </div>
+
     <div class="form-group">
         <label for="status">Status</label>
         <div>

@@ -5,11 +5,14 @@
 @section('pageTitle', 'Diaplay All Category')
 
 @section('status')
-@if (session('status'))
-    <div class="alert alert-success">
-        {{ session('status') }}
-    </div>
-@endif
+  @if (session('status'))
+      <x-alert>
+          <p>
+          {{ session('status') }}
+        </p>
+      </x-alert>
+      
+  @endif
 @endsection
 
 @section('content')
@@ -26,6 +29,7 @@
   <thead>
     <tr>
       <th>#</th>
+      <th>image</th>
       <th>Name</th>
       <th>Discription</th>
       <th>Satatus</th>
@@ -38,6 +42,7 @@
   @foreach($categories as $category)
             <tr>
                 <td>{{ $loop->iteration}}</td>
+                <td><img src="{{asset('images/'. $category->image_path)}}" width="60" height="60" alt=""></td>
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->discription }}</td>
                 <td>{{ $category->status }}</td>

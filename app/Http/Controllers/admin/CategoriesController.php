@@ -28,19 +28,23 @@ class CategoriesController extends Controller
             'name' => 'required|string|max:255|min:3|unique:categories',
             'discription' => 'nullable|min:10',
             'status' => 'required|in:active,draft',
-            'image' => 'required'
+            'image' => 'required|mimes:jpg,png,jpeg',
         ]);
+
+        $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+        $request->image->move(public_path('images'),$newImageName);
         
         $category = new Category([
             'name' => $request['name'],
             'discription' => $request['discription'],
+            'image_path' =>$newImageName,
             'slug' => Str::slug($request['name']),
             'status' => $request['status'],
 
         ]);
 
         $category->save();
-        return redirect()->route('categories.index')->with('status', 'New  Category Was Saved!');
+         return redirect()->route('categories.index')->with('status', 'New  Category Was Saved!');
        }
 
 
@@ -53,11 +57,20 @@ class CategoriesController extends Controller
 
        public function update(Request $request , $id)
        {
+        
+        $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+        $request->image->move(public_path('images'),$newImageName);
 
            $category = Category::find($id);
-           $category->update( $request->all());
+           $category->update([
+            'name' => $request['name'],
+            'discription' => $request['discription'],
+            'image_path' =>$newImageName,
+            'slug' => Str::slug($request['name']),
+            'status' => $request['status'],
+           ]);
 
-           return redirect()->route('categories.index')->with('status', 'Category ($category->name) Has Been updated');
+           return redirect()->route('categories.index')->with('status', 'Category  Has Been updated');
            
 
        }
@@ -65,7 +78,7 @@ class CategoriesController extends Controller
        public function destroy($id)
        {
         $category = Category::find($id)->delete();
-        return redirect()->route('categories.index')->with('status', 'Category ($category->name) Has Been Deleted');
+        return redirect()->route('categories.index')->with('status', 'Category  Has Been Deleted');
        }
 
        public function trash()

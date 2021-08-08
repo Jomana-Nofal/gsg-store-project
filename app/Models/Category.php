@@ -13,6 +13,19 @@ class Category extends Model
     use SoftDeletes;
     
     protected $fillable = [
-        'name', 'slug', 'status', 'discription',
+        'name', 'slug', 'status', 'discription','image_path',
     ];
+
+    public function getImageUrlAttribute()
+    {
+        if (!$this->image_path) {
+            return asset('images/placeholder.png');
+        }
+
+        if (stripos($this->image_path, 'http') === 0) {
+            return $this->image_path;
+        }
+
+        return asset('uploads/' . $this->image_path);
+    }
 }

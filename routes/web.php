@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\ProductController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,8 +15,16 @@ use App\Http\Controllers\Admin\CategoriesController;
 */
 
 Route::get('/', function () {
-    return view('adminCategories.create');
-});
+    return view('home');
+})->name('home');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+
+
 
 // Category Route
 
@@ -33,3 +42,10 @@ Route::put('/admin/categories/restore/{category?}', [CategoriesController::class
     
 
 // Product Route
+
+Route::get('/admin/create/products', [ProductController::class, 'create'])->name('products.create');
+Route::post('/admin/save/product', [ProductController::class, 'store'])->name('product.store');
+Route::get('/products', [ProductController::class, 'index'])->name('product.index');
+Route::delete('/admin/destroy/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/admin/edit/product/{id}', [ProductController::class, 'edit'])->name('product.edit');
+Route::put('/admin/update/products/{id}', [ProductController::class, 'update'])->name('product.update');

@@ -7,7 +7,7 @@
     <meta name="author" content="Dashboard">
     <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-    <title>@yield('title', 'Page Title')</title>
+    <title>@yield('title', '')</title>
 
     <!-- Bootstrap core CSS -->
     <link href="{{ asset('adminAssets/css/bootstrap.css') }}" rel="stylesheet">
@@ -36,15 +36,33 @@
                   <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
               </div>
             <!--logo start-->
-            <a href="{{ route('categories.index') }}" class="logo"><b>Admin Conrtoll Panel</b></a>
+            <a href="{{ route('home') }}" class="logo"><b>Admin Conrtoll Panel</b></a>
             <!--logo end-->
            
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
-                    <li><a class="logout btn btn-dark" href="login.html">Logout</a></li>
+                    @if(Auth::check())
+                    <li>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+
+                        
+                            <a class="" href="route('logout')"onclick="event.preventDefault();
+                                            this.closest('form').submit();"> <button class="btn btn-dark" style="background-color: #314351;
+    color: white;
+    margin-top: 10px;">logout</button></a>
+                        
+                    </form>
+                    </li>
+                    @else
+                    <li><a class="logout btn btn-dark" href="{{route('login')}}">login</a></li>
+                    <li><a class="logout btn btn-dark" href="{{url('/register')}}">register</a></li>
+                    @endif
             	</ul>
             </div>
         </header>
+
+        
       <!--header end-->
       
       <!-- **********************************************************************************************************************************************************
@@ -56,9 +74,10 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
               
-              	  <p class="centered"><a href=""><img src="{{asset('adminAssets/img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
-              	  <h5 class="centered">Admin</h5>
-              	  	
+              	
+              	  @if(Auth::check())
+                    <p class="centered"><a href=""><img src="{{asset('adminAssets/img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
+              	  <h5 class="centered">{{Auth::user()->name}}</h5>	
                   <li class="mt">
                       <a href="{{ route('categories.index') }}">
                           <i class="fa fa-dashboard"></i>
@@ -74,48 +93,24 @@
                       
                   </li>
 
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-cogs"></i>
-                          <span>Components</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="">Calendar</a></li>
-                          <li><a  href="">Gallery</a></li>
-                          <li><a  href="">Todo List</a></li>
-                      </ul>
-                  </li>
+        
                  
                   <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-tasks"></i>
-                          <span>Forms</span>
+                      <a href="{{ route('product.index') }}" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Product Index</span>
                       </a>
-                      <ul class="sub">
-                          <li><a  href="">Form Components</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class="fa fa-th"></i>
-                          <span>Data Tables</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="">Basic Table</a></li>
-                          <li><a  href="">Responsive Table</a></li>
-                      </ul>
-                  </li>
-                  <li class="sub-menu">
-                      <a href="javascript:;" >
-                          <i class=" fa fa-bar-chart-o"></i>
-                          <span>Charts</span>
-                      </a>
-                      <ul class="sub">
-                          <li><a  href="">Morris</a></li>
-                          <li><a  href="">Chartjs</a></li>
-                      </ul>
+                      
                   </li>
 
+                  <li class="sub-menu">
+                      <a href="{{ route('products.create') }}" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Create Product</span>
+                      </a>
+                      
+                  </li>
+                @endif
               </ul>
               <!-- sidebar menu end-->
           </div>
@@ -128,7 +123,7 @@
       <!--main content start-->
       <section id="main-content">
           <section class="wrapper site-min-height">
-          	<h3><i class="fa fa-angle-right"></i>  @yield('pageTitle','title')</h3>
+          	<h3><i class="fa fa-angle-right"></i>  @yield('pageTitle','')</h3>
               
             <div class="status">
             @yield('status')
