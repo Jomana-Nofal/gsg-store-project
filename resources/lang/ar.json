@@ -1,0 +1,18 @@
+{
+    "image": "الصورة ",
+    "Name": "الاسم",
+    "Discription": "الوصف",
+    "Satatus": "الحالة",
+    "Delete": "حذف",
+    "Edit": "تعديل",
+    "Slug":"الاسم اللطيف",
+    "Delete Confirmation":"تأكيد عملية الحذف",
+    "Do You Need To Delete This Category ...!":"هل تريد حقا حذف هذا العنصر",
+    "Category Name":"اسم المصنف",
+    "Category Description":"الوصف",
+    "Status":"الحالة",
+    "Active":"فعال",
+    "Draft":"غير فعال",
+    "Category Image":"صورة المصنف"
+    
+}

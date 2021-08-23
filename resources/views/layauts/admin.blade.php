@@ -41,16 +41,17 @@
            
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
+                <x-lang-switcher />
                     @if(Auth::check())
                     <li>
                     <form method="POST" action="{{ route('logout') }}">
                         @csrf
 
                         
-                            <a class="" href="route('logout')"onclick="event.preventDefault();
+                        <a class="" href="route('logout')"onclick="event.preventDefault();
                                             this.closest('form').submit();"> <button class="btn btn-dark" style="background-color: #314351;
-    color: white;
-    margin-top: 10px;">logout</button></a>
+                                color: white;
+                                margin-top: 10px;">logout</button></a>
                         
                     </form>
                     </li>
@@ -78,6 +79,7 @@
               	  @if(Auth::check())
                     <p class="centered"><a href=""><img src="{{asset('adminAssets/img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">{{Auth::user()->name}}</h5>	
+                    
                   <li class="mt">
                       <a href="{{ route('categories.index') }}">
                           <i class="fa fa-dashboard"></i>
@@ -110,6 +112,22 @@
                       </a>
                       
                   </li>
+                  <li class="sub-menu">
+                      <a href="{{ route('roles.index') }}" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Role Index</span>
+                      </a>
+                      
+                  </li>
+                  
+                  <li class="sub-menu">
+                      <a href="{{ route('roles.create') }}" >
+                          <i class="fa fa-desktop"></i>
+                          <span>Create Role</span>
+                      </a>
+                      
+                  </li>
+                  >
                 @endif
               </ul>
               <!-- sidebar menu end-->

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\ProductController;
 /*
 |--------------------------------------------------------------------------
@@ -49,3 +50,13 @@ Route::get('/products', [ProductController::class, 'index'])->name('product.inde
 Route::delete('/admin/destroy/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/edit/product/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/admin/update/products/{id}', [ProductController::class, 'update'])->name('product.update');
+
+
+// Role Route
+
+Route::get('/admin/roles', [RolesController::class, 'index'])->name('roles.index');
+Route::get('/admin/create/roles', [RolesController::class, 'create'])->name('roles.create');
+Route::post('/admin/save/roles', [RolesController::class, 'store'])->name('roles.store');
+Route::get('/admin/edit/roles/{id}', [RolesController::class, 'edit'])->name('roles.edit');
+Route::put('/admin/update/roles/{id}', [RolesController::class, 'update'])->name('roles.update');
+Route::delete('/admin/destroy/roles/{id}', [RolesController::class, 'delete'])->name('roles.destroy');

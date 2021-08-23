@@ -29,13 +29,13 @@
   <thead>
     <tr>
       <th>#</th>
-      <th>image</th>
-      <th>Name</th>
-      <th>Discription</th>
-      <th>Satatus</th>
-      <th>Slug</th>
-      <th>Edit</th>
-      <th>Delete</th>
+      <th>{{__('image')}}</th>
+      <th>{{__('Name')}}</th>
+      <th>{{__('Discription')}}</th>
+      <th>{{__('Satatus')}}</th>
+      <th>{{__('Slug')}}</th>
+      <th>{{__('Edit')}}</th>
+      <th>{{__('Delete')}}</th>
     </tr>
   </thead>
   <tbody>
@@ -50,12 +50,12 @@
                 <td><button class="btn btn-sm btn-primary"><a href="{{route('categories.edit',$category->id)}}">
                   <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:white;"></span></a></button></td>
 
-                  <td>
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter">
+                <td>
+                  <!-- Button trigger modal -->
+                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" id="{{$category->id}}">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" style="color:white;"></span>
-                    </button>
-                  </td>
+                  </button>
+                </td>
             </tr>
 
             @endforeach
@@ -67,20 +67,20 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#b21d15;">
-        <h5 class="modal-title" id="exampleModalLongTitle">Delete Confirmation</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">{{__('Delete Confirmation')}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        Do You Need To Delete This Category ...!
+        {{__('Do You Need To Delete This Category ...!')}}
       </div>
       <div class="modal-footer">
       
         <form action="{{ route('categories.destroy', $category->id) }}" method="post">
           @csrf
           @method('delete')
-          <button type="submit" class="btn btn-danger">Delete</button>
+          <button type="submit" class="btn btn-danger">{{__('Delete')}}</button>
         </form> 
         
       </div>

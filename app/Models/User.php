@@ -40,4 +40,24 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function hasAbility($ability)
+    {
+        $roles = Role::whereRaw('roles.id IN (SELECT role_id FROM roles_user WHERE user_id = ?)', [
+            $this->id,
+        ])->get();
+        
+        foreach ($roles as $role) {
+            if (in_array($ability, $role->abilities)) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class, 'roles_user', 'user_id', 'role_id', 'id', 'id');
+    }
 }
