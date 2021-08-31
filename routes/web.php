@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\user\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -60,3 +61,6 @@ Route::post('/admin/save/roles', [RolesController::class, 'store'])->name('roles
 Route::get('/admin/edit/roles/{id}', [RolesController::class, 'edit'])->name('roles.edit');
 Route::put('/admin/update/roles/{id}', [RolesController::class, 'update'])->name('roles.update');
 Route::delete('/admin/destroy/roles/{id}', [RolesController::class, 'delete'])->name('roles.destroy');
+
+//User Route
+Route::get('/user/products', [UserController::class, 'products'])->name('user.products');

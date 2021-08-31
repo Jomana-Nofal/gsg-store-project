@@ -74,7 +74,7 @@
           <div id="sidebar"  class="nav-collapse ">
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
-              
+                
               	
               	  @if(Auth::check())
                     <p class="centered"><a href=""><img src="{{asset('adminAssets/img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
@@ -129,6 +129,12 @@
                   </li>
                   >
                 @endif
+                <li class="mt" style="font-size:20px;">
+                        <a href="{{ route('user.products') }}">
+                            <i class="fa fa-dashboard"></i>
+                            <span class="span">Product Store</span>
+                        </a>
+                </li>
               </ul>
               <!-- sidebar menu end-->
           </div>
