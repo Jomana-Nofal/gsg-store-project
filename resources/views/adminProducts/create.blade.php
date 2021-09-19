@@ -14,6 +14,14 @@
             </ul>
         </div>
     @endif
+    @if (session('status'))
+      <x-alert>
+          <p>
+          {{ session('status') }}
+        </p>
+      </x-alert>
+      
+  @endif
 @endsection
 
 @section('content')
@@ -36,10 +44,14 @@
         </div>
         <div class="form-group">
             <label for="">Image</label>
-            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image">
+            <input type="file" class="form-control @error('image') is-invalid @enderror" name="image" value="{{ old('image_path') }}">
             @error('image')
             <p class="invalid-feedback">{{ $message }}</p>
             @enderror
+        </div>
+        <div class="form-group">
+        <label for="sku">Category_id</label>
+            <input type="text" name="category_id" value="{{ old('category_id') }}" />
         </div>
         <div class="form-group">
         <label for="sku">sku</label>
@@ -78,13 +90,13 @@
             <label for="status">Status</label>
             <div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status-active" value="active" >
+                    <input class="form-check-input" type="radio" name="status" id="status-active" value="active" @if(old('status') == 'active') checked @endif >
                     <label class="form-check-label" for="status-active">
                         Active
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" >
+                    <input class="form-check-input" type="radio" name="status" id="status-draft" value="draft" @if(old('status') == 'draft') checked @endif >
                     <label class="form-check-label" for="status-draft">
                         Draft
                     </label>

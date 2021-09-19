@@ -34,9 +34,9 @@
         <tbody>
             @foreach($products as $product)
             <tr>
-                <td><img src="" width="60" alt=""></td>
+            <td><img src="{{asset('images/'. $product->image_path)}}" width="60" height="60" alt=""></td>
                 <td>{{ $product->name }}</td>
-                <td> </td>
+                <td>{{$product->category_id}} </td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->status }}</td>
@@ -47,7 +47,7 @@
                     <form action="{{route('product.destroy', $product->id) }}" method="post">
                     @csrf
                     @method('delete')
-                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-sm btn-danger" onclick="d()">Delete</button>
                 </form>
                
                 </td> 
@@ -63,3 +63,9 @@
         </tbody>
     </table>
 @endsection
+
+<script>
+    function d(){
+      alert("Do You Need To Delete This Category ...!");
+    }
+  </script>

@@ -5,6 +5,8 @@ use App\Http\Controllers\Admin\CategoriesController;
 use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\user\UserController;
+use App\Http\Controllers\CartController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -64,3 +66,6 @@ Route::delete('/admin/destroy/roles/{id}', [RolesController::class, 'delete'])->
 
 //User Route
 Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
+
+//Cart Route
+Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');

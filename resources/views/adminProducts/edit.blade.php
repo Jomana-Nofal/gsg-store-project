@@ -46,7 +46,7 @@
         </div>
         <div class="form-group">
         <label for="sku">sku</label>
-            <input type="text" name="sku" value="{{ old('sku',$products->sku) }}" />
+            <input type="text" name="sku" value="{{ old('sku')}}" />
         </div>
         <div class="form-group">
         <label for="price">price</label>

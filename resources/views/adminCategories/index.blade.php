@@ -48,13 +48,19 @@
                 <td>{{ $category->status }}</td>
                 <td>{{ $category->slug }}</td>
                 <td><button class="btn btn-sm btn-primary"><a href="{{route('categories.edit',$category->id)}}">
-                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:white;"></span></a></button></td>
+                  <span class="glyphicon glyphicon-pencil" aria-hidden="true" style="color:white;"></span> </a> {{__('Edit')}}</button></td>
 
                 <td>
+
+                  <form action="{{ route('categories.destroy', $category->id) }}" method="post">
+                     @csrf
+                     @method('delete')
+                     <button type="submit" class="btn btn-danger" onClick="d()"><span class="glyphicon glyphicon-trash" aria-hidden="true" style="color:white;"></span> {{__('Delete')}} </button>
+                  </form> 
                   <!-- Button trigger modal -->
-                  <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" id="{{$category->id}}">
+                  <!-- <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModalCenter" onClick="d({{$category->id}})">
                     <span class="glyphicon glyphicon-trash" aria-hidden="true" style="color:white;"></span>
-                  </button>
+                  </button> -->
                 </td>
             </tr>
 
@@ -63,7 +69,7 @@
   </tbody>
 </table>
 <!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header" style="background-color:#b21d15;">
@@ -86,11 +92,15 @@
       </div>
     </div>
   </div>
-</div>
+</div> -->
 
 
         
-  
+  <script>
+    function d(){
+      alert("Do You Need To Delete This Category ...!");
+    }
+  </script>
 
 
                    

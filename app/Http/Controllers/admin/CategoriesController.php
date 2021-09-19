@@ -31,6 +31,7 @@ class CategoriesController extends Controller
             'image' => 'required|mimes:jpg,png,jpeg',
         ]);
 
+        
         $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
         $request->image->move(public_path('images'),$newImageName);
         
@@ -57,22 +58,27 @@ class CategoriesController extends Controller
 
        public function update(Request $request , $id)
        {
-        
-        $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
-        $request->image->move(public_path('images'),$newImageName);
-
            $category = Category::find($id);
-           $category->update([
-            'name' => $request['name'],
-            'discription' => $request['discription'],
-            'image_path' =>$newImageName,
-            'slug' => Str::slug($request['name']),
-            'status' => $request['status'],
-           ]);
+           
+           if($request->image){
+                $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+                $request->image->move(public_path('images'),$newImageName);
+                $category->update([
+                    'image_path' =>$newImageName,
+                ]);
 
+                $category->save();
+            }else{
+            $category->update([
+                'name' => $request['name'],
+                'discription' => $request['discription'],
+                'slug' => Str::slug($request['name']),
+                'status' => $request['status'],
+               ]);
+               $category->save();
+            }
            return redirect()->route('categories.index')->with('status', 'Category  Has Been updated');
            
-
        }
 
        public function destroy($id)

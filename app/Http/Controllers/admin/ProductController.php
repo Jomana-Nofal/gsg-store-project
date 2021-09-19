@@ -23,9 +23,9 @@ class ProductController extends Controller
     {
         $validate = $request->validate([
             'name' => 'required|max:255',
-            // 'category_id' => 'required|int|exists:categories,id',
+            'category_id' => 'required|int|exists:categories,id',
             'description' => 'nullable',
-            'image' => 'nullable',
+            // 'image' => 'nullable',
             'price' => 'nullable|numeric|min:0',
             'sale_price' => 'nullable|numeric|min:0',
             'quantity' => 'nullable|int|min:0',
@@ -36,19 +36,31 @@ class ProductController extends Controller
             'weight' => 'nullable|numeric|min:0',
             'status' => 'required|in:active,draft',
         ]);
-       $request->merge([
-            'slug' => Str::slug($request->post('name')),
-            'category_id' =>1,
-        ]);
-        $product = Product::create($request->all());
-        return redirect()->back()
-            ->with('status', "Product ($product->name) created.");
-    }
 
-    public function destroy($id)
-    {
-     $products = Product::find($id)->delete();
-     return redirect()->route('product.index')->with('status', 'Category  Has Been Deleted');
+        // $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+        // $request->image->move(public_path('images'),$newImageName);
+
+
+        $product = new Product([
+            'name' =>$request->name,
+            'category_id' =>$request->category_id ,
+            'description' =>$request->description ,
+            'price' => $request->price,
+            // 'image_path'=>$newImageName,
+            'sale_price' =>$request->sale_price ,
+            'quantity' => $request->quantity,
+            'sku' =>$request->sku,
+            'slug'=> Str::slug($request['name']),
+            'width' =>$request->width,
+            'height' =>$request->height ,
+            'length' =>$request->length ,
+            'weight' =>$request->weight,
+            'status' =>$request->status ,
+
+        ]);
+        $product->save();
+        return redirect()->back()->with('status', "Product ($product->name) created.");
+               
     }
 
     public function edit($id)
@@ -61,10 +73,26 @@ class ProductController extends Controller
     {
 
         $product = Product::find($id);
-        $product->update( $request->all());
+        if($request->image){
+            $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+            $request->image->move(public_path('images'),$newImageName);
+            $product->update([
+                'image_path' =>$newImageName,
+            ]);
 
-        return redirect()->route('product.index')->with('status', 'Product  Has Been updated');
+            $product->save();
+        }else{
+        
+        $product->update( $request->all());
+        }
+        return redirect()->route('product.index')->with('status', "Product ($request->name) Has Been updated");
         
 
+    }
+
+    public function destroy($id)
+    {
+     $products = Product::find($id)->delete();
+     return redirect()->route('product.index')->with('status',"Product ($product->name) Has Been Deleted");
     }
 }

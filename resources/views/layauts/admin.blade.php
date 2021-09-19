@@ -42,25 +42,31 @@
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                 <x-lang-switcher />
+                <a href="#"><i class="glyphicon glyphicon-shopping-cart cart"></i></a>
                     @if(Auth::check())
                     <li>
                     <form method="POST" action="{{ route('logout') }}">
-                        @csrf
-
-                        
+                        @csrf   
                         <a class="" href="route('logout')"onclick="event.preventDefault();
-                                            this.closest('form').submit();"> <button class="btn btn-dark" style="background-color: #314351;
-                                color: white;
-                                margin-top: 10px;">logout</button></a>
-                        
+                            this.closest('form').submit();"> <button class="btn btn-dark" style="background-color:black;
+                            color: white;
+                            margin-top: 10px;">logout</button></a>                
                     </form>
                     </li>
-                    @else
-                    <li><a class="logout btn btn-dark" href="{{route('login')}}">login</a></li>
-                    <li><a class="logout btn btn-dark" href="{{url('/register')}}">register</a></li>
-                    @endif
-            	</ul>
+                </ul>
             </div>
+                    @else
+                    <div class="btn-group auth-group">
+                        <button class="btn btn-m dropdown-toggle registration" data-toggle="dropdown">Registrgation</button>
+                        <ul class="dropdown-menu">
+                            <li><a class="logout" href="{{route('login')}}">login</a></li>
+                            <li><a class="logout" href="{{url('/register')}}">register</a></li>
+                         </ul>
+                    </div>
+                    <!-- <li><a class="logout btn btn-dark" href="{{route('login')}}">login</a></li>
+                    <li><a class="logout btn btn-dark" href="{{url('/register')}}">register</a></li> -->
+                @endif
+            	
         </header>
 
         
@@ -75,11 +81,19 @@
               <!-- sidebar menu start-->
               <ul class="sidebar-menu" id="nav-accordion">
                 
-              	
+              
               	  @if(Auth::check())
                     <p class="centered"><a href=""><img src="{{asset('adminAssets/img/ui-sam.jpg') }}" class="img-circle" width="60"></a></p>
               	  <h5 class="centered">{{Auth::user()->name}}</h5>	
-                    
+                  @endif  
+
+                  <li class="mt" style="font-size:20px;">
+                    <a href="{{ route('user.products') }}">
+                        <i class="fa fa-dashboard"></i>
+                        <span class="span">Product Store</span>
+                    </a>
+                  </li>
+                  @if(Auth::check())
                   <li class="mt">
                       <a href="{{ route('categories.index') }}">
                           <i class="fa fa-dashboard"></i>
@@ -127,14 +141,9 @@
                       </a>
                       
                   </li>
-                  >
+                
                 @endif
-                <li class="mt" style="font-size:20px;">
-                        <a href="{{ route('user.products') }}">
-                            <i class="fa fa-dashboard"></i>
-                            <span class="span">Product Store</span>
-                        </a>
-                </li>
+               
               </ul>
               <!-- sidebar menu end-->
           </div>
