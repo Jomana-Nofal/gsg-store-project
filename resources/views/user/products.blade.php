@@ -175,7 +175,7 @@
                           {{$product->price}}$
                         </span>
                         <small class="text-muted">Category</small>
-                          <a href="#" class="product-name"> {{$product->name}}</a>
+                          <a href="{{route('product.detaile',$product->slug)}}" class="product-name"> {{$product->name}}</a>
 
                           <div class="small m-t-xs">
                               {{$product->description}}.
@@ -184,7 +184,9 @@
                           <div class="m-t text-righ">
                             <form action="{{route('cart.store')}}" method="post">
                               @csrf
-                              <input type="hidden" name="product_id" value="{{ $product->id }}"> 
+                              <input type="hidden" name="product_id" value="{{ $product->id }}">
+                              <input type="hidden" name="quantity" value="1"> 
+ 
                               <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</button>
 
                             </form>                             

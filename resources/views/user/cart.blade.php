@@ -1,0 +1,100 @@
+@extends('layauts.admin')
+
+@section('title', 'Shoping Cart')
+@section('pageTitle', 'Shoping Cart')
+
+
+
+@section('status')
+@endsection
+<style>
+   
+   .img-cart {
+    display: block;
+    max-width: 50px;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    table tr td{
+        border:1px solid #FFFFFF;    
+    }
+
+    table tr th {
+        background:#eee;    
+    }
+
+    .panel-shadow {
+        box-shadow: rgba(0, 0, 0, 0.3) 7px 7px 7px;
+    }
+</style>
+@section('content')
+
+<link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css">
+<div class="container bootstrap snippets bootdey text-center">
+    <div class="col-md-9 col-sm-8 content">
+        
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-info panel-shadow">
+                    <div class="panel-heading">
+                        <h3>
+                            <img class="img-circle img-thumbnail" width="120px" src="https://us.123rf.com/450wm/robuart/robuart1712/robuart171200953/91101327-shopping-fun-for-everyone-cartoon-woman-with-cart.jpg?ver=6">
+                            Welcome, To Your Shoping Cart
+                        </h3>
+                    </div>
+                    <div class="panel-body"> 
+                        <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Description</th>
+                                <th>Qty</th>
+                                <th>Price</th>
+                                <th>Total</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($cart as $item)
+                                <tr>
+                                    <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td>
+                                    <td><strong>{{$item->product->name}}</strong><p>Size : 26</p></td>
+                                    <td>
+                                    <form class="form-inline">
+                                        <input class="form-control" type="text" value="{{$item->quantity}}">
+                                        <button rel="tooltip" class="btn btn-default"><i class="fa fa-pencil"></i></button>
+                                        <a href="#" class="btn btn-primary"><i class="fa fa-trash-o"></i></a>
+                                    </form>
+                                    </td>
+                                    <td>${{$item->product->price}}</td>
+                                    <td>${{$item->product->price * $item->quantity}}</td>
+                                </tr>
+                                @endforeach
+                                <tr>
+                                    <td colspan="6">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Total Product</td>
+                                    <td>${{$total}}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right">Total Shipping</td>
+                                    <td>$2.00</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="4" class="text-right"><strong>Total</strong></td>
+                                    <td>${{$total - 2}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                </div>
+                <!-- <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
+                <a href="#" class="btn btn-primary pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a> -->
+            </div>
+        </div>
+    </div>
+</div>
+@endsection    

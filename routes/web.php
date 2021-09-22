@@ -53,6 +53,8 @@ Route::get('/products', [ProductController::class, 'index'])->name('product.inde
 Route::delete('/admin/destroy/product/{id}', [ProductController::class, 'destroy'])->name('product.destroy');
 Route::get('/admin/edit/product/{id}', [ProductController::class, 'edit'])->name('product.edit');
 Route::put('/admin/update/products/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/user/show/product/{slug}', [ProductController::class, 'show'])->name('product.detaile');
+
 
 
 // Role Route
@@ -69,3 +71,4 @@ Route::get('/user/products', [UserController::class, 'products'])->name('user.pr
 
 //Cart Route
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
+Route::get('/cart/show', [CartController::class, 'index'])->name('cart.index');

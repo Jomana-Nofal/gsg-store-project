@@ -89,6 +89,10 @@ class ProductController extends Controller
         
 
     }
+    public function show(Request $request,$slug){
+        $product = Product::where('slug',$slug)->first();
+        return view('user.productDetails',compact('product'));
+    }
 
     public function destroy($id)
     {
