@@ -5,6 +5,14 @@
 @section('pageTitle', ' Product Store')
 
 @section('status')
+@if (session('status'))
+        <x-alert>
+            <p>
+            {{ session('status') }}
+            </p>
+        </x-alert>
+        
+    @endif
 @endsection
 
 <style>

@@ -5,6 +5,14 @@
 @section('pageTitle', ' Product Detaile')
 
 @section('status')
+@if (session('status'))
+        <x-alert>
+            <p>
+            {{ session('status') }}
+            </p>
+        </x-alert>
+        
+    @endif
 @endsection
 <style>
     body{margin-top:20px;
@@ -216,7 +224,7 @@
                   <input type="quantiy" placeholder="1" class="form-control quantity" name="quantity">
                 </div>
                 </br>
-                <button type="submit" class="btn  btn-round btn-danger"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</button>
+                <button type="submit" class="btn  btn-round btn-danger" id="addToCart"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</button>
 
             </form>                             
           </div>
@@ -224,4 +232,10 @@
   </section>
   </div>
   </div>
+  <script>
+      $('#addToCart').on('submit',function(e){
+          e.preventDefault();
+          $.post($(this).attr('action'),$(this).serialize());
+      })
+  </script>
 @endsection

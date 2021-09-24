@@ -1,13 +1,14 @@
 @extends('layauts.admin')
 
 @section('title', 'Shoping Cart')
-@section('pageTitle', 'Shoping Cart')
+@section('pageTitle', 'Shopping Cart')
 
 
 
 @section('status')
 @endsection
 <style>
+   
    
    .img-cart {
     display: block;
@@ -91,8 +92,7 @@
                     </div>
                 </div>
                 </div>
-                <!-- <a href="#" class="btn btn-success"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Continue Shopping</a>
-                <a href="#" class="btn btn-primary pull-right">Next<span class="glyphicon glyphicon-chevron-right"></span></a> -->
+                <a href="{{route('checkout.show')}}" class="btn btn-primary pull-right">Continue Shopping<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     </div>

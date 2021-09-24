@@ -35,12 +35,13 @@ class CartController extends Controller
                 $product = Product::find($id);
                 //عشان نشوف اذا الكونتتي الي طلبها اليوزر اكبر من الموجودة فعليا عنا ولا لا 
                 if ($value > $product->quantity) {
-                    $fail(__('Quantity greater than quantity in our stock.'));
+                    // $fail(__('Quantity greater than quantity in our stock.'));
+                     return redirect()->back()->with('status', __('Item added to cart!'));
                 }
             }],
         ]);
 
         $carts = $this->cart->add($request->post('product_id'), $request->post('quantity', 1));
-        return redirect()->back()->with('success', __('Item added to cart!'));
+        return redirect()->back()->with('status', __('Item added to cart!'));
     }
 }

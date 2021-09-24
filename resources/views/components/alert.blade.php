@@ -1,5 +1,5 @@
 
 
-<div class="alert alert-success">
-    <p>{{ $slot }}</p>
+<div class="alert alert-success" style="font-size:18px;">
+    <p >{{ $slot }}</p>
 </div>

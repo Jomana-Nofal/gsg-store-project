@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\RolesController;
 use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\user\UserController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -72,3 +74,6 @@ Route::get('/user/products', [UserController::class, 'products'])->name('user.pr
 //Cart Route
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart/show', [CartController::class, 'index'])->name('cart.index');
+
+
+Route::get('/checout/show', [OrderController::class, 'show'])->name('checkout.show');

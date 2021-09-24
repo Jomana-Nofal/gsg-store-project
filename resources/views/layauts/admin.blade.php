@@ -42,7 +42,7 @@
             <div class="top-menu">
             	<ul class="nav pull-right top-menu">
                 <x-lang-switcher />
-                <a href="#"><i class="glyphicon glyphicon-shopping-cart cart"></i></a>
+                <a href="{{route('cart.index')}}"><i class="glyphicon glyphicon-shopping-cart cart"></i></a>
                     @if(Auth::check())
                     <li>
                     <form method="POST" action="{{ route('logout') }}">
