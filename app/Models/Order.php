@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Observers\OrderObserver;
 
 class Order extends Model
 {
@@ -32,6 +33,14 @@ class Order extends Model
         'notes',
     ];
 
+    //بستخدم هاي الفنكشن لما اكون بدي اعمل اشي ثابت عند كل عملية انشتاء مثلا
+    protected static function booted()
+    {
+        // بصير على المودل بدل ما اكتب الكود كله هناevent  على أي  listener عشان تعمل observer بستخدم ال 
+        static::observe(OrderObserver::class);
+    }
+
+    //Model Related Relation
     public function user()
     {
         return $this->belongsTo(User::class);

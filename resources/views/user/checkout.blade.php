@@ -6,6 +6,14 @@
 
 
 @section('status')
+    @if (session('status'))
+        <x-alert>
+            <p>
+            {{ session('status') }}
+            </p>
+        </x-alert>
+        
+    @endif
 @endsection
 
 @section('content')
@@ -25,7 +33,7 @@
                
                     <hr/>
                     <div class="shopping_cart">
-                        <form class="form-horizontal" role="form" action="" method="post" id="payment-form">
+                        
                             <div class="panel-group" id="accordion">
                                 <div class="panel panel-default">
                                     <div class="panel-heading">
@@ -38,33 +46,30 @@
                                         <div class="panel-body">
                                             <div class="items">
                                                 <div class="col-md-9">
-                                                    <table class="table table-striped">
-                                                        <tr>
-                                                            <td colspan="2">
-                                                                <a class="btn btn-warning btn-sm pull-right"
-                                                                   href="http://www.startajobboard.com/"
-                                                                   title="Remove Item">X</a>
-                                                                <b>
-                                                                    Premium Posting</b></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td>
-                                                                <ul>
-                                                                    <li>One Job Posting Credit</li>
-                                                                    <li>Job Distribution*</li>
-                                                                    <li>Social Media Distribution</li>
-                                                                </ul>
-                                                            </td>
-                                                            <td>
-                                                                <b>$147.00</b>
-                                                            </td>
-                                                        </tr>
-                                                    </table>
+                                                <table class="table ps-checkout__products">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-uppercase">Product</th>
+                                            <th class="text-uppercase">Quantity</th>
+                                            <th class="text-uppercase">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($cart->all() as $item)
+                                        <tr>
+                                            <td>{{ $item->product->name }}</td>
+                                            <td>{{ $item->quantity }}</td>
+                                            <td>${{ $item->product->price * $item->quantity }}</td>
+                                        </tr>
+                                        @endforeach
+                                        
+                                    </tbody>
+                                </table>
                                                 </div>
                                                 <div class="col-md-3">
                                                     <div style="text-align: center;">
                                                         <h3>Order Total</h3>
-                                                        <h3><span style="color:green;">$147.00</span></h3>
+                                                        <h3><span style="color:green;">${{ $cart->total() }}</span></h3>
                                                     </div>
                                                 </div>
                                             </div>
@@ -98,37 +103,32 @@
                                         <b>Help us keep your account safe and secure, please verify your billing
                                             information.</b>
                                         <br/><br/>
+                                    <form action="{{route('order.store')}}" method="post">  
+                                         @csrf
                                         <table class="table table-striped" style="font-weight: bold;">
                                             <tr>
                                                 <td style="width: 175px;">
                                                     <label for="id_email">Best Email:</label></td>
                                                 <td>
-                                                    <input class="form-control" id="id_email" name="email"
+                                                    <input class="form-control" id="id_email" name="billing_email"
                                                            required="required" type="text"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="width: 175px;">
-                                                    <label for="id_first_name">First name:</label></td>
+                                                    <label for="id_name">Full name:</label></td>
                                                 <td>
-                                                    <input class="form-control" id="id_first_name" name="first_name"
+                                                    <input class="form-control" id="id_name" name="billing_name"
                                                            required="required" type="text"/>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td style="width: 175px;">
-                                                    <label for="id_last_name">Last name:</label></td>
-                                                <td>
-                                                    <input class="form-control" id="id_last_name" name="last_name"
-                                                           required="required" type="text"/>
-                                                </td>
-                                            </tr>
+                                          
                                             <tr>
                                                 <td style="width: 175px;">
                                                     <label for="id_address_line_1">Address:</label></td>
                                                 <td>
                                                     <input class="form-control" id="id_address_line_1"
-                                                           name="address_line_1" required="required" type="text"/>
+                                                           name="billing_address" required="required" type="text"/>
                                                 </td>
                                             </tr>
                                             
@@ -136,8 +136,19 @@
                                                 <td style="width: 175px;">
                                                     <label for="id_city">City:</label></td>
                                                 <td>
-                                                    <input class="form-control" id="id_city" name="city"
+                                                    <input class="form-control" id="id_city" name="billing_city"
                                                            required="required" type="text"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="width: 175px;">
+                                                    <label for="billing_country">Country:</label></td>
+                                                <td>
+                                                <select name="billing_country" id="billing_country" class="form-control">
+                                                    @foreach($countries as $country=>$name)
+                                                    <option value="{{$country}}">{{$name}}</option>
+                                                    @endforeach
+                                                </select>
                                                 </td>
                                             </tr>
                                             
@@ -145,11 +156,13 @@
                                                 <td style="width: 175px;">
                                                     <label for="id_phone">Phone:</label></td>
                                                 <td>
-                                                    <input class="form-control" id="id_phone" name="phone" type="text"/>
+                                                    <input class="form-control" id="id_phone" name="billing_phone" type="text"/>
                                                 </td>
                                             </tr>
 
                                         </table>
+                                        <button type="submit" class="btn btn-success btn-lg " style="width:100%;">Order Now</button>
+                                    </form>    
                                     </div>
                                 </div>
                             </div>
@@ -252,9 +265,9 @@
                                                     </div>
                                                 </div>
                                         </fieldset>
-                                        <button type="submit" class="btn btn-success btn-lg" style="width:100%;">Pay
+                                        <!-- <button type="submit" class="btn btn-success btn-lg" style="width:100%;">Pay
                                             Now
-                                        </button>
+                                        </button> -->
                                         <br/>
                                         <div style="text-align: left;"><br/>
                                             By submiting this order you are agreeing to our <a href="/legal/billing/">universal
@@ -267,7 +280,10 @@
                             </div>
                     </div>
                 </div>
-                </form>
+                
+                                            
+                                        
+              
             </div>
         </div>
     </div>

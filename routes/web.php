@@ -32,7 +32,7 @@ require __DIR__.'/auth.php';
 
 
 
-// Category Route
+// Category Routes
 
 Route::get('/admin/categories', [CategoriesController::class, 'index'])->name('categories.index');
 Route::get('/admin/create/categories', [CategoriesController::class, 'create'])->name('categories.create');
@@ -47,7 +47,7 @@ Route::post('/admin/categories/forceDelete/{id?}', [CategoriesController::class,
 Route::put('/admin/categories/restore/{category?}', [CategoriesController::class, 'restore'])->name('category.restore');
     
 
-// Product Route
+// Product Routes
 
 Route::get('/admin/create/products', [ProductController::class, 'create'])->name('products.create');
 Route::post('/admin/save/product', [ProductController::class, 'store'])->name('product.store');
@@ -59,7 +59,7 @@ Route::get('/user/show/product/{slug}', [ProductController::class, 'show'])->nam
 
 
 
-// Role Route
+// Role Routes
 
 Route::get('/admin/roles', [RolesController::class, 'index'])->name('roles.index');
 Route::get('/admin/create/roles', [RolesController::class, 'create'])->name('roles.create');
@@ -68,12 +68,14 @@ Route::get('/admin/edit/roles/{id}', [RolesController::class, 'edit'])->name('ro
 Route::put('/admin/update/roles/{id}', [RolesController::class, 'update'])->name('roles.update');
 Route::delete('/admin/destroy/roles/{id}', [RolesController::class, 'delete'])->name('roles.destroy');
 
-//User Route
+//User Routes
 Route::get('/user/products', [UserController::class, 'products'])->name('user.products');
 
-//Cart Route
+//Cart Routes
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart/show', [CartController::class, 'index'])->name('cart.index');
 
+//checkout Routes
+Route::get('/checout/create', [OrderController::class, 'create'])->name('checkout.create');
+Route::post('/order/store', [OrderController::class, 'store'])->name('order.store');
 
-Route::get('/checout/show', [OrderController::class, 'show'])->name('checkout.show');

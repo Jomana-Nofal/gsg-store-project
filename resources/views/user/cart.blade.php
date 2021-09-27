@@ -92,7 +92,7 @@
                     </div>
                 </div>
                 </div>
-                <a href="{{route('checkout.show')}}" class="btn btn-primary pull-right">Continue Shopping<span class="glyphicon glyphicon-chevron-right"></span></a>
+                <a href="{{route('checkout.create')}}" class="btn btn-primary pull-right">Continue Shopping<span class="glyphicon glyphicon-chevron-right"></span></a>
             </div>
         </div>
     </div>
