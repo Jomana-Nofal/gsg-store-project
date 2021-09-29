@@ -21,6 +21,9 @@ class EventServiceProvider extends ServiceProvider
         OrderCreated::class => [
             \App\Listeners\SendInvoiceListener::class,
         ],
+        'sendInvoice'=>[
+            \App\Listeners\InvoiceListener::class,
+        ]
     ];
 
     /**

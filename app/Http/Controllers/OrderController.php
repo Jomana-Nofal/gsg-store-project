@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 use Throwable;
 use Symfony\Component\Intl\Countries;
 use App\Events\OrderCreated;
+use App\Notifications\sendInvoiceNotification;
+use Illuminate\Support\Facades\Notification;
 
 
 
@@ -68,6 +70,8 @@ class OrderController extends Controller
             DB::commit();
             //ممكن اعمل كلاس خاص لهاي الايفنت  او ممكن زي ما احنا عاملين بتعامل مع الايفنت مباشرة لكن الليسينر لازم اله كلاس
             event(new OrderCreated($order));
+            event('sendInvoice',$order);
+            // Notification::send( new sendInvoiceNotification($order));
             return redirect()->back()->with('status', __('Order created Sucessfuly .'));
             
         } catch (Throwable $e) {

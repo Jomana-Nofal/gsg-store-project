@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Listeners;
-
+use Illuminate\Support\Facades\Mail;
+use App\Mail\OrderInvoice;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
-use App\Mail\OrderInvoice;
-class SendInvoiceListener
+
+class InvoiceListener
 {
     /**
      * Create the event listener.
@@ -23,11 +24,9 @@ class SendInvoiceListener
      * @param  object  $event
      * @return void
      */
-    public function handle(OrderCreated $event)
+    public function handle($order)
     {
-        //بدي أرسل ايميل لصاحب الاوردر بالفاتورة
-        //  فلازم أنشأه بالارتيزن maillable class بتحتاج  send() ال 
-        
-        
+        // dd($order);
+        Mail::to($order->billing_email)->send(new OrderInvoice($order));
     }
 }
