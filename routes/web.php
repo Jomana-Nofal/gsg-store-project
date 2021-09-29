@@ -74,6 +74,9 @@ Route::get('/user/products', [UserController::class, 'products'])->name('user.pr
 //Cart Routes
 Route::post('/cart/store', [CartController::class, 'store'])->name('cart.store');
 Route::get('/cart/show', [CartController::class, 'index'])->name('cart.index');
+Route::delete('/cart/destroy/item/{id}', [CartController::class, 'destroy'])->name('item.destroy');
+Route::put('/cart/update/quantity/{id}', [CartController::class, 'update'])->name('quantity.update');
+
 
 //checkout Routes
 Route::get('/checout/create', [OrderController::class, 'create'])->name('checkout.create');

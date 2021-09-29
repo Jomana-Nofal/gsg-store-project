@@ -52,7 +52,7 @@
 
                 <td>
 
-                  <form action="{{ route('categories.destroy', $category->id) }}" method="post">
+                  <form action="{{ route('categories.destroy', $category->id) }}" method="post" onsubmit="return ConfirmDelete()">
                      @csrf
                      @method('delete')
                      <button type="submit" class="btn btn-danger" onClick="d()"><span class="glyphicon glyphicon-trash" aria-hidden="true" style="color:white;"></span> {{__('Delete')}} </button>
@@ -96,10 +96,13 @@
 
 
         
-  <script>
-    function d(){
-      alert("Do You Need To Delete This Category ...!");
+
+    <script type="text/javascript">
+    function ConfirmDelete()
+    {
+        return confirm("are you sure ?");
     }
+
   </script>
 
 

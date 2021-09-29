@@ -6,6 +6,20 @@
 
 
 @section('status')
+    @if(session('status'))
+        <x-alert>
+            <p>
+            {{ session('status') }}
+            </p>
+      </x-alert>
+    @endif   
+    @if(session('status-_danger'))
+        <div class="alert alert-danger" style="font-size:18px;">
+            <p>
+            {{ session('status-_danger') }}
+            </p>
+        </div>    
+    @endif   
 @endsection
 <style>
    
@@ -52,6 +66,7 @@
                                 <th>Product</th>
                                 <th>Description</th>
                                 <th>Qty</th>
+                                <th></th>
                                 <th>Price</th>
                                 <th>Total</th>
                             </tr>
@@ -62,11 +77,20 @@
                                     <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td>
                                     <td><strong>{{$item->product->name}}</strong><p>Size : 26</p></td>
                                     <td>
-                                    <form class="form-inline">
-                                        <input class="form-control" type="text" value="{{$item->quantity}}">
-                                        <button rel="tooltip" class="btn btn-default"><i class="fa fa-pencil"></i></button>
-                                        <a href="#" class="btn btn-primary"><i class="fa fa-trash-o"></i></a>
+                                    <form class="form-inline" action="{{ route('quantity.update',$item->id) }}" method="post">
+                                         @csrf
+                                        <input type="hidden" name="_method" value="PUT">
+                                        <input class="form-control" type="text" value="{{$item->quantity}}" name="quantity">
+                                            
+                                        <button  class="btn btn-default" type="submit"  ><a href="#"><i class="fa fa-pencil" style="color:black;"></i></a></button>
                                     </form>
+                                    </td>
+                                    <td>
+                                        <form class="form-inline" action="{{ route('item.destroy',$item->product->id) }}" method="post" onsubmit="return ConfirmDelete()">
+                                            @csrf
+                                            @method('delete')    
+                                            <button  class="btn btn-primary" type="submit"  ><a href="#"><i class="fa fa-trash-o" style="color:white;"></i></a></button>
+                                        </form>
                                     </td>
                                     <td>${{$item->product->price}}</td>
                                     <td>${{$item->product->price * $item->quantity}}</td>
@@ -97,4 +121,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+    function ConfirmDelete()
+    {
+        return confirm("are you sure ?");
+    }
+</script>
 @endsection    

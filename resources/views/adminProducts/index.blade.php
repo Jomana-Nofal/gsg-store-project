@@ -44,7 +44,7 @@
           
 
                 <td>
-                    <form action="{{route('product.destroy', $product->id) }}" method="post">
+                    <form action="{{route('product.destroy', $product->id) }}" method="post" onsubmit="return ConfirmDelete()">
                     @csrf
                     @method('delete')
                     <button type="submit" class="btn btn-sm btn-danger" onclick="d()">Delete</button>
@@ -64,8 +64,9 @@
     </table>
 @endsection
 
-<script>
-    function d(){
-      alert("Do You Need To Delete This Category ...!");
+<script type="text/javascript">
+    function ConfirmDelete()
+    {
+        return confirm("are you sure ?");
     }
-  </script>
+</script>

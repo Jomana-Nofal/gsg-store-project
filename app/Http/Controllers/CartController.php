@@ -44,4 +44,25 @@ class CartController extends Controller
         $carts = $this->cart->add($request->post('product_id'), $request->post('quantity', 1));
         return redirect()->back()->with('status', __('Item added to cart!'));
     }
+
+    public function destroy($id)
+
+    {
+        $item = Cart::where('product_id','=',$id)->delete();
+        return redirect()->route('cart.index')->with('status', __('Item deleted from the cart!'));
+    }
+
+   function update(Request $request ,$id)
+
+    {
+       $cart = Cart::findOrFail($id);
+       $quantity = $cart->product->quantity;
+       if($request->quantity >$quantity){
+            return redirect()->route('cart.index')->with('status-_danger', __('Warninng !!!product quantity greater than quantity on stock!'));
+       }else{
+            $cart->update($request->all()); 
+            return redirect()->route('cart.index')->with('status', __('product quantity  updated sucsesfuly!'));
+       }
+       
+    }
 }
