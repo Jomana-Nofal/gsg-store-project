@@ -5,5 +5,5 @@ require('alpinejs');
 
 window.Echo.private('orders')
     .listen('.order.created', (e) => {
-        alert('Your Order Was Created Succesfuly');
+        alert('Checkout Your email To see Your Invoice');
     });
