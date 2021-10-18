@@ -20,15 +20,15 @@
 <table class="table">
         <thead>
             <tr>
-                <th>Pro.image</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Price</th>
-                <th>Qty.</th>
-                <th>Status</th>
-                <th>Created At</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>{{__('image')}}</th>
+                <th>{{__('Name')}}</th>
+                <th>{{__('Category')}}</th>
+                <th>{{__('Price')}}</th>
+                <th>{{__('Qty.')}}</th>
+                <th>{{__('Status')}}</th>
+                <th>{{__('Created At')}}</th>
+                <th>{{__('Edit')}}</th>
+                <th>{{__('Delete')}}</th>
             </tr>
         </thead>
         <tbody>
@@ -36,7 +36,7 @@
             <tr>
             <td><img src="{{asset('images/'. $product->image_path)}}" width="60" height="60" alt=""></td>
                 <td>{{ $product->name }}</td>
-                <td>{{$product->category_id}} </td>
+                <td><a href="{{route('category.product',$product->category->id)}}">{{$product->category->name}}</a> </td>
                 <td>{{ $product->price }}</td>
                 <td>{{ $product->quantity }}</td>
                 <td>{{ $product->status }}</td>

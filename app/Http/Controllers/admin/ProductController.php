@@ -5,12 +5,14 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     public function create()
     {
-        return view('adminProducts.create');
+        $categories = Category::all();
+        return view('adminProducts.create',compact('categories'));
     }
 
     public function index()
@@ -25,8 +27,8 @@ class ProductController extends Controller
             'name' => 'required|max:255',
             'category_id' => 'required|int|exists:categories,id',
             'description' => 'nullable',
-            // 'image' => 'nullable',
             'price' => 'nullable|numeric|min:0',
+            'image'=>'required',
             'sale_price' => 'nullable|numeric|min:0',
             'quantity' => 'nullable|int|min:0',
             'sku' => 'nullable|unique:products,sku',
@@ -37,8 +39,8 @@ class ProductController extends Controller
             'status' => 'required|in:active,draft',
         ]);
 
-        // $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
-        // $request->image->move(public_path('images'),$newImageName);
+        $newImageName= time().'-'.$request->name.'-'.$request->image->extension();
+        $request->image->move(public_path('images'),$newImageName);
 
 
         $product = new Product([
@@ -46,7 +48,7 @@ class ProductController extends Controller
             'category_id' =>$request->category_id ,
             'description' =>$request->description ,
             'price' => $request->price,
-            // 'image_path'=>$newImageName,
+            'image_path'=>$newImageName,
             'sale_price' =>$request->sale_price ,
             'quantity' => $request->quantity,
             'sku' =>$request->sku,
@@ -65,8 +67,8 @@ class ProductController extends Controller
 
     public function edit($id)
     {
-     $products = Product::find($id);
-    return view('adminProducts.edit',compact('products'));
+        $products = Product::find($id);
+        return view('adminProducts.edit',compact('products'));
     }
 
     public function update(Request $request , $id)
@@ -97,6 +99,13 @@ class ProductController extends Controller
     public function destroy($id)
     {
      $products = Product::find($id)->delete();
-     return redirect()->route('product.index')->with('status',"Product ($product->name) Has Been Deleted");
+     return redirect()->route('product.index');
+    }
+
+
+    public function category($id)
+    {
+        $products = Product::where('category_id','=',$id)->get();
+        return view('user.categoryProducts',compact('products'));
     }
 }

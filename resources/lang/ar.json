@@ -14,6 +14,12 @@
     "Active":"فعال",
     "Draft":"غير فعال",
     "Category Image":"صورة المصنف",
-    "Item added to cart!":"تم اضافة المنتج الى السلة بنجاح"
-    
+    "Item added to cart!":"تم اضافة المنتج الى السلة بنجاح",
+    "Category": "التصنيف",
+    "Price":"السعر",
+    "Qty.":"الكمية",
+    "Product":"المنتج",
+    "Description":"الوصف",
+    "Qty":"الكمية",
+    "Total":"المجموع الكلي"
 }

@@ -25,7 +25,7 @@
 @endsection
 
 @section('content')
-<form method="post" action="{{route('product.store')}}">
+<form method="post" action="{{route('product.store')}}" enctype="multipart/form-data">
     @csrf
     <div class="form-group">
     <label for="">Product Name</label>
@@ -49,10 +49,23 @@
             <p class="invalid-feedback">{{ $message }}</p>
             @enderror
         </div>
-        <div class="form-group">
+
+        <div class="">
+        
+            <label for="service-select">Choose Category:</label>
+
+            <select name="category_id" id="service-select">
+                <option value="">--Please choose an Category--</option>
+                @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->id}}</option>
+                @endforeach
+            </select>
+                            
+        </div>
+        <!-- <div class="form-group">
         <label for="sku">Category_id</label>
             <input type="text" name="category_id" value="{{ old('category_id') }}" />
-        </div>
+        </div> -->
         <div class="form-group">
         <label for="sku">sku</label>
             <input type="text" name="sku" value="{{ old('sku') }}" />

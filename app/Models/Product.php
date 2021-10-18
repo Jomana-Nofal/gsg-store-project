@@ -29,5 +29,10 @@ class Product extends Model
 
         return asset('uploads/' . $this->image_path);
     }
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
     
 }

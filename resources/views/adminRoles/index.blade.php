@@ -21,10 +21,10 @@
         <thead>
             <tr>
                 <th>#</th>
-                <th>Name</th>
-                <th>Created At</th>
-                <th>Edit</th>
-                <th>Delete</th>
+                <th>{{__('Name')}}</th>
+                <th>{{__('Created At')}}</th>
+                <th>{{__('Edit')}}</th>
+                <th>{{__('Delete')}}</th>
             </tr>
         </thead>
         <tbody>

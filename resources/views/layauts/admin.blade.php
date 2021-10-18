@@ -94,6 +94,8 @@
                     </a>
                   </li>
                   @if(Auth::check())
+                  
+                  @if(Auth::user()->type == 'admin')
                   <li class="mt">
                       <a href="{{ route('categories.index') }}">
                           <i class="fa fa-dashboard"></i>
@@ -141,6 +143,7 @@
                       </a>
                       
                   </li>
+                  @endif
                 
                 @endif
                

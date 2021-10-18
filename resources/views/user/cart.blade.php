@@ -63,12 +63,12 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Product</th>
-                                <th>Description</th>
-                                <th>Qty</th>
+                                <th>{{__('Product')}}</th>
+                                <th>{{__('Description')}}</th>
+                                <th>{{__('Qty')}}</th>
                                 <th></th>
-                                <th>Price</th>
-                                <th>Total</th>
+                                <th>{{__('Price')}}</th>
+                                <th>{{__('Total')}}</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -100,7 +100,7 @@
                                     <td colspan="6">&nbsp;</td>
                                 </tr>
                                 <tr>
-                                    <td colspan="4" class="text-right">Total Product</td>
+                                    <td colspan="4" class="text-right">{{__('Total Product')}}</td>
                                     <td>${{$total}}</td>
                                 </tr>
                                 <tr>

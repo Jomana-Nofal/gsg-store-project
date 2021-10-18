@@ -2,7 +2,7 @@
 
 @section('title', 'Product Store')
 
-@section('pageTitle', ' Product Store')
+@section('pageTitle', 'Category Products')
 
 @section('status')
 @if (session('status'))
@@ -189,16 +189,7 @@
                               {{$product->description}}.
                           </div>
                           <br>
-                          <div class="m-t text-righ">
-                            <form action="{{route('cart.store')}}" method="post">
-                              @csrf
-                              <input type="hidden" name="product_id" value="{{ $product->id }}">
-                              <input type="hidden" name="quantity" value="1"> 
- 
-                              <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-shopping-cart"></i> Add To Cart</button>
-
-                            </form>                             
-                          </div>
+                         
                     </div>
                 </div>
             </div>

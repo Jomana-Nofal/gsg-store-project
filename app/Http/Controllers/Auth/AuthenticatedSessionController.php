@@ -32,7 +32,7 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->route('categories.index');
+        return redirect()->route('home');
     }
 
     /**
