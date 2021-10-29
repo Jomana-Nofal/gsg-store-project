@@ -45,7 +45,7 @@
                 </td>
 
                   <td>
-                  <form  action="{{route('category.restore', $category->id)}}" method="post">
+                  <form  action="{{route('category.restore',$category->id)}}" method="post">
                     @csrf
                     @method('put')
                     <button type="submit" class="restore"><span class="glyphicon glyphicon-repeat"></span> Restore</button>           
@@ -58,4 +58,8 @@
 
   </tbody>
 </table>
+
+<br>
+<br>
+{{ $categories->links() }}
 @endsection

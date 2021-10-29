@@ -22,9 +22,11 @@
             <tr>
                 <th>#</th>
                 <th>{{__('Name')}}</th>
-                <th>{{__('Created At')}}</th>
+                <th>{{__('Created At')}}</th> 
+                 @if(Auth::user()->type == 'super admin')
                 <th>{{__('Edit')}}</th>
                 <th>{{__('Delete')}}</th>
+                @endif
             </tr>
         </thead>
         <tbody>
@@ -33,6 +35,8 @@
                 <td>{{$loop->iteration}}</td>
                 <td>{{ $role->name }}</td>
                 <td>{{ $role->created_at }}</td>
+                @if(Auth::user()->type == 'super admin')
+
                 <td>
                    
                     <button type="submit" class="btn btn-sm btn-primary">
@@ -50,6 +54,7 @@
                 </form>
                
                 </td>
+                @endif
             </tr>
             @endforeach
         </tbody>

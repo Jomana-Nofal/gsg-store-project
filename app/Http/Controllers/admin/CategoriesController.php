@@ -11,7 +11,7 @@ class CategoriesController extends Controller
 {
     public function index()
     {
-        $categories = Category::paginate(10);
+        $categories = Category::paginate(5);
         return view('adminCategories.index', compact('categories'));
     }
 
@@ -89,7 +89,9 @@ class CategoriesController extends Controller
 
        public function trash()
        {
-        $category = Category::onlyTrashed()->paginate();
+        // $categories = Category::paginate(5);
+
+        $category = Category::onlyTrashed()->paginate(5);
         return view('adminCategories.trash', [
             'categories' => $category,
         ]);
@@ -99,21 +101,23 @@ class CategoriesController extends Controller
   
       public function forceDelete($id)
        {
+          
            $category= Category::onlyTrashed()->findOrFail($id);
+             
            $category->forceDelete();
            return redirect()->route('categories.index')->with('status', "Category ($category->name) deleted forever.");
                 
 
        }
 
-       public function restore(Request $request, ?Category $category = null)
+       public function restore(Request $request,$category)
        {
-           if($category){
-                $category->restore();
+        
+            Category::withTrashed()->find($category)->restore();
 
-                return redirect()->route('categories.index')->with('status', "Category ($category->name) restored.");
+            return redirect()->route('categories.index')->with('status', "Category Has Been restored.");
                     
-            }
+         
         
                 
 

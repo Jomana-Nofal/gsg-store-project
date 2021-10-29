@@ -74,7 +74,7 @@
                             <tbody>
                                 @foreach($cart as $item)
                                 <tr>
-                                    <td><img src="https://via.placeholder.com/400x200/FFB6C1/000000" class="img-cart"></td>
+                                    <td><img src="{{asset('images/'. $item->product->image_path)}}" class="img-cart"></td>
                                     <td><strong>{{$item->product->name}}</strong><p>Size : 26</p></td>
                                     <td>
                                     <form class="form-inline" action="{{ route('quantity.update',$item->id) }}" method="post">

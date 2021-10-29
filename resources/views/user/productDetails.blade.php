@@ -184,7 +184,7 @@
       <div class="panel-body">
           <div class="col-md-6">
               <div class="pro-img-details">
-                  <img src="https://via.placeholder.com/550x380/FFB6C1/000000" alt="">
+                  <img src="{{asset('images/'. $product->image_path)}}" alt="">
               </div>
               <div class="pro-img-list">
                   <a href="#">
@@ -204,15 +204,15 @@
           <div class="col-md-6">
               <h4 class="pro-d-title">
                   <a href="#" class="">
-                      {{$product->name}}
+                      <h3>{{$product->name}}</h3>
                   </a>
               </h4>
               <p>
                   Praesent ac condimentum felis. Nulla at nisl orci, at dignissim dolor, The best product descriptions address your ideal buyer directly and personally. The best product descriptions address your ideal buyer directly and personally.
               </p>
               <div class="product_meta">
-                  <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">Jackets</a>, <a rel="tag" href="#">Men</a>, <a rel="tag" href="#">Shirts</a>, <a rel="tag" href="#">T-shirt</a>.</span>
-                  <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="#">mens</a>, <a rel="tag" href="#">womens</a>.</span>
+                  <span class="posted_in"> <strong>Categories:</strong> <a rel="tag" href="#">{{$product->category->name}}</a>.</span>
+                  <span class="tagged_as"><strong>Tags:</strong> <a rel="tag" href="#">{{$product->category->name}}</a>
               </div>
               <div class="m-bot15"> <strong>Price : </strong> <span class="amount-old">${{$product->price}}</span>  <span class="pro-price"> ${{$product->sale_price}}</span></div>
             

@@ -135,7 +135,8 @@
                       </a>
                       
                   </li>
-                  
+                  @endif
+                  @if(Auth::user()->type == 'super admin')
                   <li class="sub-menu">
                       <a href="{{ route('roles.create') }}" >
                           <i class="fa fa-desktop"></i>
@@ -143,7 +144,7 @@
                       </a>
                       
                   </li>
-                  @endif
+                 @endif
                 
                 @endif
                
